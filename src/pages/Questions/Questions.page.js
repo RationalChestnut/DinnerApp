@@ -1,16 +1,9 @@
 import React, { useState, useRef } from "react";
-import {
-  View,
-  Text,
-  Animated,
-  PanResponder,
-  Dimensions,
-  StyleSheet,
-} from "react-native";
+import { View, Text, Animated, PanResponder, Dimensions } from "react-native";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const SWIPE_THRESHOLD = 120; // How far user must drag card before it flies off
-// You can obviously replace this with any data you prefer
+const SWIPE_THRESHOLD = 120;
+
 const QUESTIONS = [
   {
     id: "1",
@@ -34,23 +27,18 @@ const QUESTIONS = [
 
 export const Questions = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // This is the main Animated Value controlling the card’s X/Y position
   const position = useRef(new Animated.ValueXY()).current;
 
-  // Interpolated rotation (for tilt while dragging left/right)
   const rotate = position.x.interpolate({
     inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
     outputRange: ["-10deg", "0deg", "10deg"],
     extrapolate: "clamp",
   });
 
-  // Compose our transforms (rotation + translation)
   const rotateAndTranslate = {
     transform: [{ rotate }, ...position.getTranslateTransform()],
   };
 
-  // Opacity & scale for the *next* card behind the top card (nice effect)
   const nextCardOpacity = position.x.interpolate({
     inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
     outputRange: [1, 0.8, 1],
@@ -63,30 +51,23 @@ export const Questions = () => {
     extrapolate: "clamp",
   });
 
-  // PanResponder for handling gestures
   const panResponder = useRef(
     PanResponder.create({
-      // We want to handle any touch on the top card
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (evt, gestureState) => {
         position.setValue({ x: gestureState.dx, y: 0 });
       },
       onPanResponderRelease: (evt, gestureState) => {
-        // If user swipes far to the right
         if (gestureState.dx > SWIPE_THRESHOLD) {
           Animated.timing(position, {
             toValue: { x: SCREEN_WIDTH + 100, y: 0 },
             duration: 200,
             useNativeDriver: false,
           }).start(() => {
-            // Move on to the next card
             setCurrentIndex((prevIndex) => prevIndex + 1);
-            // Reset the position for the next card
             position.setValue({ x: 0, y: 0 });
           });
-        }
-        // If user swipes far to the left
-        else if (gestureState.dx < -SWIPE_THRESHOLD) {
+        } else if (gestureState.dx < -SWIPE_THRESHOLD) {
           Animated.timing(position, {
             toValue: { x: -SCREEN_WIDTH - 100, y: 0 },
             duration: 200,
@@ -95,9 +76,7 @@ export const Questions = () => {
             setCurrentIndex((prevIndex) => prevIndex + 1);
             position.setValue({ x: 0, y: 0 });
           });
-        }
-        // Otherwise, the card snaps back to the center
-        else {
+        } else {
           Animated.spring(position, {
             toValue: { x: 0, y: 0 },
             friction: 5,
@@ -110,12 +89,10 @@ export const Questions = () => {
 
   const renderCards = () => {
     return QUESTIONS.map((item, i) => {
-      // If we've swiped past this card, don't render it
       if (i < currentIndex) {
         return null;
       }
 
-      // If it's the top card (the one currently swiping)
       if (i === currentIndex) {
         return (
           <Animated.View
@@ -157,10 +134,23 @@ export const Questions = () => {
     }).reverse();
   };
 
-  return <View style={{ flex: 1 }}>{renderCards()}</View>;
+  return (
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      {currentIndex >= QUESTIONS.length ? (
+        <View style={styles.endContainer}>
+          <Text style={styles.endTitle}>All Done! 🎉</Text>
+          <Text style={styles.endText}>
+            You've completed all the questions. Thanks for participating!
+          </Text>
+        </View>
+      ) : (
+        renderCards()
+      )}
+    </View>
+  );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   cardContainer: {
     position: "absolute",
     width: "100%",
@@ -168,6 +158,7 @@ const styles = StyleSheet.create({
     top: "12%",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "white",
   },
   innerCard: {
     width: "85%",
@@ -175,6 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 20,
     alignItems: "center",
+    backgroundColor: "white",
   },
   label: {
     color: "#fff",
@@ -199,4 +191,21 @@ const styles = StyleSheet.create({
     bottom: 20,
     fontSize: 16,
   },
-});
+  endContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  endTitle: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 16,
+    color: "#2b86c5",
+  },
+  endText: {
+    fontSize: 18,
+    textAlign: "center",
+    color: "#666",
+  },
+};
