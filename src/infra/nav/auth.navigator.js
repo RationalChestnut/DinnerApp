@@ -3,13 +3,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Questions } from "../../pages/Questions/Questions.page";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Upcoming } from "../../pages/Upcoming/Upcoming.page";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
   Questions: "cards-playing-outline",
-  Journal: "book",
+  Events: "home",
 };
 
 export const AuthenticatedNavigator = () => {
@@ -40,6 +41,7 @@ export const AuthenticatedNavigator = () => {
         };
       }}
     >
+      <Tab.Screen name="Events" component={Upcoming} />
       <Tab.Screen name="Questions" component={Questions} />
     </Tab.Navigator>
   );
