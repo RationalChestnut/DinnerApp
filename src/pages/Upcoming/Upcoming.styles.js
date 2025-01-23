@@ -4,13 +4,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { View, Image, Text, TouchableOpacity } from "react-native";
+import { View, Image, Text, TouchableOpacity, ScrollView } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
 
-export const PageContainer = styled(View)`
+export const PageContainer = styled(ScrollView)`
   background-color: white;
   flex: 1;
 `;
@@ -118,3 +118,11 @@ export const Close = styled(Ionicons).attrs({
   name: "close",
   size: RFPercentage(4),
 })``;
+
+export const Bar = styled(View)`
+  width: ${wp("90%")}px;
+  height: ${hp("0.2%")}px;
+  background-color: black;
+  margin-top: ${hp("4%")}px;
+  align-self: center;
+`;

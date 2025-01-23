@@ -1,6 +1,7 @@
 import React, { useState, useRef, useMemo } from "react";
 import {
   BackgroundImage,
+  Bar,
   Book,
   BottomSheetContentContainer,
   BottomSheetRow,
@@ -32,14 +33,14 @@ export const Upcoming = () => {
     "Taylor Swift",
     "Harry Styles",
     "Adele",
-    "Paul McCartney",
+    "Washington",
   ]);
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => ["60%"], []);
 
   const handleSheetChange = (index) => {
     if (index === -1) {
-      bottomSheetRef.current?.close(); // Optional to ensure it's fully closed
+      bottomSheetRef.current?.close();
     }
   };
 
@@ -81,7 +82,19 @@ export const Upcoming = () => {
             Math
           </Description>
         </Row>
+
+        <Bar />
+        {people.map((person) => (
+          <BottomSheetRow key={person}>
+            <Name>Request {person}'s number?</Name>
+            <IconsContainer>
+              <Check onPress={() => removePerson(person, "accept")} />
+              <Close onPress={() => removePerson(person, "reject")} />
+            </IconsContainer>
+          </BottomSheetRow>
+        ))}
       </Contents>
+
       <BottomSheet
         ref={bottomSheetRef}
         index={-1}

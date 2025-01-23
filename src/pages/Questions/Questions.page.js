@@ -23,6 +23,90 @@ const QUESTIONS = [
     text: "What does happiness mean to you?",
     color: "#2b86c5",
   },
+  {
+    id: "4",
+    label: "Surface Level",
+    text: "What’s your favorite holiday or celebration?",
+    color: "#42f58d",
+  },
+  {
+    id: "5",
+    label: "Deep End",
+    text: "What is a memory that shaped who you are today?",
+    color: "#ff6f61",
+  },
+  {
+    id: "6",
+    label: "Philosophical",
+    text: "Do you think people are inherently good or bad?",
+    color: "#5d2c8f",
+  },
+  {
+    id: "7",
+    label: "Surface Level",
+    text: "What’s your go-to comfort food?",
+    color: "#34eb77",
+  },
+  {
+    id: "8",
+    label: "Deep End",
+    text: "What’s a risk you’re glad you took?",
+    color: "#fcae1e",
+  },
+  {
+    id: "9",
+    label: "Philosophical",
+    text: "What role does fear play in your life?",
+    color: "#6d28b1",
+  },
+  {
+    id: "10",
+    label: "Surface Level",
+    text: "Do you prefer mornings or nights?",
+    color: "#1ecdfc",
+  },
+  {
+    id: "11",
+    label: "Deep End",
+    text: "Who has had the greatest impact on your life and why?",
+    color: "#e95d22",
+  },
+  {
+    id: "12",
+    label: "Philosophical",
+    text: "What is your personal definition of success?",
+    color: "#6c63ff",
+  },
+  {
+    id: "13",
+    label: "Surface Level",
+    text: "If you could live anywhere in the world, where would it be?",
+    color: "#73c2fb",
+  },
+  {
+    id: "14",
+    label: "Deep End",
+    text: "What’s a failure you learned the most from?",
+    color: "#f7849b",
+  },
+  {
+    id: "15",
+    label: "Philosophical",
+    text: "What do you think happens after we die?",
+    color: "#ad5389",
+  },
+  {
+    id: "16",
+    label: "Surface Level",
+    text: "What’s the last book or movie you enjoyed?",
+    color: "#98fb98",
+  },
+  {
+    id: "17",
+    label: "Deep End",
+    text: "When do you feel most at peace?",
+    color: "#e2725b",
+  },
 ];
 
 export const Questions = () => {
@@ -158,7 +242,6 @@ const styles = {
     top: "12%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
   },
   innerCard: {
     width: "85%",
