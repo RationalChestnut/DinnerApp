@@ -7,6 +7,8 @@ import {
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Feather from "@expo/vector-icons/Feather";
 
 export const PageContainer = styled(View)`
   background-color: white;
@@ -56,22 +58,63 @@ export const Description = styled(Text)`
   margin-left: ${wp("4%")}px;
 `;
 
-export const CancelButton = styled(TouchableOpacity)`
-  background-color: #5d8cf9;
-  padding: ${hp("2%")}px;
-  align-items: center;
-  border-radius: ${wp(2)}px;
-  margin: 0px ${wp("4%")}px;
-  margin-top: auto;
-  margin-bottom: ${hp("2%")}px;
+export const Book = styled(Entypo).attrs({
+  name: "open-book",
+  size: RFPercentage(4),
+})``;
+
+export const NotificationsIcon = styled(Ionicons).attrs({
+  name: "notifications",
+  size: RFPercentage(4),
+})``;
+
+export const NotificationsBackground = styled(TouchableOpacity)`
+  background-color: white;
+  position: absolute;
+  top: ${hp(7.5)};
+  right: ${wp(6)};
+  z-index: 1;
+  padding: ${wp(2)}px;
+  border-radius: 50px;
 `;
 
-export const CancelButtonText = styled(Text)`
-  color: white;
+export const BottomSheetContentContainer = styled(View)`
+  border-radius: ${wp("10%")}px;
+  padding: ${hp("2%")}px;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+export const BottomSheetTitle = styled(Text)`
+  font-size: ${RFPercentage(3)}px;
+  font-weight: 600;
+`;
+
+export const BottomSheetRow = styled(View)`
+  flex-direction: row;
+  margin-top: ${hp("2%")}px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const Name = styled(Text)`
   font-size: ${RFPercentage(2)}px;
 `;
 
-export const Book = styled(Entypo).attrs({
-  name: "open-book",
+export const IconsContainer = styled(View)`
+  flex-direction: row;
+`;
+
+export const Check = styled(Feather).attrs({
+  name: "check",
+  size: RFPercentage(4),
+})`
+  margin-right: ${wp("4%")}px;
+`;
+
+export const Close = styled(Ionicons).attrs({
+  name: "close",
   size: RFPercentage(4),
 })``;
