@@ -11,6 +11,9 @@ import {
   Check,
   Clock,
   Close,
+  Coins,
+  CoinsContainer,
+  CoinsText,
   Contents,
   Description,
   IconsContainer,
@@ -22,6 +25,7 @@ import {
   PageContainer,
   Row,
   Title,
+  UpperRow,
 } from "./Upcoming.styles";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { createToast } from "../../components/Toast.component";
@@ -57,13 +61,20 @@ export const Upcoming = () => {
 
   return (
     <PageContainer>
-      <NotificationsBackground
-        onPress={() => {
-          bottomSheetRef.current.expand();
-        }}
-      >
-        <NotificationsIcon />
-      </NotificationsBackground>
+      <UpperRow>
+        <CoinsContainer>
+          <CoinsText>50</CoinsText>
+          <Coins />
+        </CoinsContainer>
+        <NotificationsBackground
+          onPress={() => {
+            bottomSheetRef.current.expand();
+          }}
+        >
+          <NotificationsIcon />
+        </NotificationsBackground>
+      </UpperRow>
+
       <BackgroundImage />
       <Contents>
         <Title>Brian, your seat is confirmed!</Title>
@@ -83,8 +94,8 @@ export const Upcoming = () => {
           </Description>
         </Row>
 
-        <Bar />
-        {people.map((person) => (
+        {/* <Bar /> */}
+        {/* {people.map((person) => (
           <BottomSheetRow key={person}>
             <Name>Request {person}'s number?</Name>
             <IconsContainer>
@@ -92,7 +103,7 @@ export const Upcoming = () => {
               <Close onPress={() => removePerson(person, "reject")} />
             </IconsContainer>
           </BottomSheetRow>
-        ))}
+        ))} */}
       </Contents>
 
       <BottomSheet

@@ -9,6 +9,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 export const PageContainer = styled(ScrollView)`
   background-color: white;
@@ -70,12 +71,11 @@ export const NotificationsIcon = styled(Ionicons).attrs({
 
 export const NotificationsBackground = styled(TouchableOpacity)`
   background-color: white;
-  position: absolute;
-  top: ${hp(7.5)};
-  right: ${wp(6)};
-  z-index: 1;
-  padding: ${wp(2)}px;
   border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  height: ${hp("6%")}px;
+  width: ${hp("6%")}px;
 `;
 
 export const BottomSheetContentContainer = styled(View)`
@@ -125,4 +125,33 @@ export const Bar = styled(View)`
   background-color: black;
   margin-top: ${hp("4%")}px;
   align-self: center;
+`;
+
+export const Coins = styled(FontAwesome5).attrs({
+  name: "coins",
+  size: RFPercentage(4),
+})``;
+
+export const CoinsText = styled(Text)`
+  font-size: ${RFPercentage(3)}px;
+  margin-right: ${wp(2)}px;
+  font-weight: 600;
+`;
+
+export const CoinsContainer = styled(View)`
+  background-color: white;
+  padding: 0 ${wp(4)}px;
+  border-radius: 50px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const UpperRow = styled(View)`
+  position: absolute;
+  top: ${hp(7.5)}px;
+  z-index: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 ${wp(4)}px;
+  width: 100%;
 `;
